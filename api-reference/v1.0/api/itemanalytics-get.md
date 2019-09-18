@@ -63,7 +63,8 @@ If successful, this method returns a `200 OK` response code and a collection of 
 <!-- { "blockType": "request", "name": "get-analytics" } -->
 
 ```msgraph-interactive
-GET /drives/{drive-id}/items/{item-id}/analytics
+GET /drives/{drive-id}/items/{item-id}/analytics/allTime
+GET /drives/{drive-id}/items/{item-id}/analytics/lastSevenDays
 ```
 # [C#](#tab/csharp)
 [!INCLUDE [sample-code](../includes/snippets/csharp/get-analytics-csharp-snippets.md)]
@@ -92,20 +93,42 @@ GET /drives/{drive-id}/items/{item-id}/analytics
 HTTP/1.1 200 OK
 Content-type: application/json
 
+allTime:
 {
-    "allTime": {
-        "access": {
-            "actionCount": 123,
-            "actorCount": 89
-        }
+    "@odata.context": "https://graph.microsoft.com/v1.0/$metadata#microsoft.graph.itemActivityStat",
+    "startDateTime": "0001-01-01T00:00:00Z",
+    "endDateTime": "0001-01-01T00:00:00Z",
+    "isTrending": false,
+    "access": {
+        "actionCount": 3,
+        "actorCount": 1
     },
-    "lastSevenDays": {
-        "access": {
-            "actionCount": 52,
-            "actorCount": 41
-        }
+    "incompleteData": {
+        "missingDataBeforeDateTime": "2019-09-12T06:15:12Z",
+        "wasThrottled": false,
+        "resultsPending": false,
+        "notSupported": false
     }
 }
+
+lastSevenDays:
+{
+    "@odata.context": "https://graph.microsoft.com/v1.0/$metadata#microsoft.graph.itemActivityStat",
+    "startDateTime": "2019-09-12T00:00:00Z",
+    "endDateTime": "2019-09-18T00:00:00Z",
+    "isTrending": false,
+    "access": {
+        "actionCount": 3,
+        "actorCount": 1
+    },
+    "incompleteData": {
+        "missingDataBeforeDateTime": "2019-09-12T06:15:12Z",
+        "wasThrottled": false,
+        "resultsPending": false,
+        "notSupported": false
+    }
+}
+
 ```
 
 <!--
